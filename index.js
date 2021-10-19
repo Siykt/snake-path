@@ -37,7 +37,7 @@ function isRepeat(list, pos) {
 }
 
 function isCrossedLine(x, y) {
-  return x >= MAX_X || x <= 0 || y >= MAX_X || y <= 0;
+  return x >= MAX_X || x < 0 || y >= MAX_X || y < 0;
 }
 
 new Vue({
@@ -118,10 +118,10 @@ new Vue({
       }
       this.snakeBodyList = snakeBodyList;
       if (isCrossedLine(this.headerPos.x, this.headerPos.y) || isRepeat(snakeBodyList, this.headerPos)) {
-        alert('你输了');
         this.isLose = true;
         this.isPlaying = false;
-        return clearTimeout(this._timer);
+        clearTimeout(this._timer);
+        return alert('你输了');
       }
       this._moveLock = false;
       this._timer = setTimeout(() => this.render(), this.speed);
