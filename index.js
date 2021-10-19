@@ -37,7 +37,7 @@ function isRepeat(list, pos) {
 }
 
 function isCrossedLine(x, y) {
-  return x >= MAX_X || x < 0 || y >= MAX_X || y < 0;
+  return x >= MAX_X || x < 0 || y >= MAX_Y || y < 0;
 }
 
 new Vue({
@@ -85,7 +85,7 @@ new Vue({
     },
     genFoot() {
       const x = 10 + (((Math.random() * (MAX_X - 10)) / 10) >>> 0) * 10;
-      const y = 10 + (((Math.random() * (MAX_X - 10)) / 10) >>> 0) * 10;
+      const y = 10 + (((Math.random() * (MAX_Y - 10)) / 10) >>> 0) * 10;
       if (isRepeat(this.snakeBodyList, { x, y }) || isCrossedLine(x, y)) {
         this.genFoot();
       } else {
