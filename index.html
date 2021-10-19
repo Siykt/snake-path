@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>贪食蛇</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="tools">
+        <button @click="playGame">{{ isPlaying ? '停止' : isLose ? '重新开始' : '开始' }}</button>
+        <div class="info-bar">
+          <p>🐍 的长度: {{ snakeBodyList.length }}</p>
+          <p>游戏的速度: {{ speed / 200 }}</p>
+        </div>
+        <p class="count">得分: {{ count }}</p>
+      </div>
+      <div ref="snake" class="snake">
+        <div :style="{ top: headerPos.y + 'px', left: headerPos.x + 'px' }" ref="snakeHeader" class="snake-header"></div>
+        <div
+          :key="body.uuid"
+          :uid="body.uuid"
+          v-for="body in snakeBodyList"
+          :style="{ top: body.pos.y + 'px', left: body.pos.x + 'px' }"
+          class="snake-body"
+        ></div>
+        <div class="snake-foot" :style="{ top: footPos.y + 'px', left: footPos.x + 'px' }"></div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
